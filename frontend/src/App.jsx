@@ -1,4 +1,3 @@
-import { Toaster } from "react-hot-toast";
 import GoalSearchFilter from "./components/GoalSearchFilter";
 import Settings from "./pages/Settings";
 import {
@@ -964,9 +963,6 @@ return (
 
   <>
 
-    <Toaster
-      position="top-right"
-    />
 
     <MainLayout
       darkMode={darkMode}
