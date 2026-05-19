@@ -8,9 +8,7 @@ import {
   XAxis,
   YAxis,
   CartesianGrid,
-  ResponsiveContainer,
-  AreaChart,
-  Area,
+  ResponsiveContainer
 } from "recharts";
 
 import {
@@ -21,8 +19,6 @@ import {
   useEffect,
   useState,
 } from "react";
-
-import CountUp from "react-countup";
 
 import { toast } from "react-hot-toast";
 
@@ -82,57 +78,50 @@ const Analytics = () => {
     goals.length === 0
       ? 0
       : Math.round(
-          (completed /
-            goals.length) *
-            100
-        );
+        (completed /
+          goals.length) *
+        100
+      );
 
   const analyticsData = [
     {
       name: "Completed",
-      value: completed,
+      value: completed || 0,
     },
-
     {
       name: "Pending",
-      value: pending,
+      value: pending || 0,
     },
   ];
 
-  const progressData = goals.map(
-    (goal) => ({
-      name: goal.title,
-      progress:
-        goal.progress || 0,
-    })
-  );
+  const progressData =
+    goals?.map((goal) => ({
+      name: goal.title || "Goal",
+      progress: goal.progress || 0,
+    })) || [];
 
   const productivityData = [
     {
       month: "Jan",
       productivity: 62,
     },
-
     {
       month: "Feb",
       productivity: 71,
     },
-
     {
       month: "Mar",
       productivity: 78,
     },
-
     {
       month: "Apr",
       productivity: 85,
     },
-
     {
       month: "May",
       productivity: 91,
     },
-  ];
+  ] || [];
 
   if (loading) {
 
@@ -204,10 +193,7 @@ const Analytics = () => {
 
           <h2 className="text-5xl font-bold mt-3">
 
-            <CountUp
-              end={goals.length}
-              duration={2}
-            />
+            {goals.length}
 
           </h2>
 
@@ -221,10 +207,7 @@ const Analytics = () => {
 
           <h2 className="text-5xl font-bold mt-3">
 
-            <CountUp
-              end={completed}
-              duration={2}
-            />
+            {completed}
 
           </h2>
 
@@ -238,10 +221,7 @@ const Analytics = () => {
 
           <h2 className="text-5xl font-bold mt-3">
 
-            <CountUp
-              end={pending}
-              duration={2}
-            />
+            {pending}
 
           </h2>
 
@@ -255,10 +235,7 @@ const Analytics = () => {
 
           <h2 className="text-5xl font-bold mt-3">
 
-            <CountUp
-              end={completionRate}
-              duration={2}
-            />
+            {completionRate}
 
             %
 
@@ -393,8 +370,8 @@ const Analytics = () => {
                       key={`cell-${index}`}
                       fill={
                         COLORS[
-                          index %
-                            COLORS.length
+                        index %
+                        COLORS.length
                         ]
                       }
                     />
@@ -475,35 +452,12 @@ const Analytics = () => {
           height={350}
         >
 
-          <AreaChart
-            data={productivityData}
-          >
+          <BarChart data={productivityData}>
 
-            <defs>
-
-              <linearGradient
-                id="colorUv"
-                x1="0"
-                y1="0"
-                x2="0"
-                y2="1"
-              >
-
-                <stop
-                  offset="5%"
-                  stopColor="#3B82F6"
-                  stopOpacity={0.8}
-                />
-
-                <stop
-                  offset="95%"
-                  stopColor="#3B82F6"
-                  stopOpacity={0}
-                />
-
-              </linearGradient>
-
-            </defs>
+            <CartesianGrid
+              strokeDasharray="3 3"
+              stroke="#374151"
+            />
 
             <XAxis
               dataKey="month"
@@ -514,29 +468,22 @@ const Analytics = () => {
               stroke="#D1D5DB"
             />
 
-            <CartesianGrid
-              strokeDasharray="3 3"
-              stroke="#374151"
-            />
-
             <Tooltip />
 
-            <Area
-              type="monotone"
+            <Bar
               dataKey="productivity"
-              stroke="#3B82F6"
-              fillOpacity={1}
-              fill="url(#colorUv)"
+              fill="#3B82F6"
             />
 
-          </AreaChart>
+          </BarChart>
 
         </ResponsiveContainer>
-
       </div>
-
     </div>
   );
 };
 
 export default Analytics;
+
+
+
