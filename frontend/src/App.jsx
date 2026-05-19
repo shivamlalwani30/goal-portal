@@ -65,7 +65,7 @@ function App() {
   const fetchGoals = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/goals"
+        "https://goalportal-api.onrender.com/api/goals"
       );
 
       setGoals(res.data);
@@ -82,7 +82,7 @@ function App() {
   const loginUser = async () => {
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/auth/login",
+        "https://goalportal-api.onrender.com/api/auth/login",
         {
           email,
           password,
@@ -168,7 +168,7 @@ function App() {
       };
 
       const res = await axios.post(
-        "http://localhost:5000/api/goals",
+        "https://goalportal-api.onrender.com/api/goals",
         newGoal
       );
 
@@ -218,7 +218,7 @@ function App() {
       }
 
       const res = await axios.put(
-        `http://localhost:5000/api/goals/${id}`,
+        `https://goalportal-api.onrender.com/api/goals/${id}`,
         {
           progress,
           status,
@@ -251,7 +251,7 @@ function App() {
     try {
 
       await axios.delete(
-        `http://localhost:5000/api/goals/${id}`
+        `https://goalportal-api.onrender.com/api/goals/${id}`
       );
 
       fetchGoals();

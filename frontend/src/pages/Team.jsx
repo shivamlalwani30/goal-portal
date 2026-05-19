@@ -27,7 +27,7 @@ const Team = () => {
       try {
         const res =
           await axios.get(
-            "http://localhost:5000/api/employees"
+            "https://goalportal-api.onrender.com/api/employees"
           );
 
         setEmployees(res.data);
@@ -45,7 +45,7 @@ const Team = () => {
       try {
         const res =
           await axios.post(
-            "http://localhost:5000/api/employees",
+            "https://goalportal-api.onrender.com/api/employees",
             {
               name: newEmployee.name,
               role: newEmployee.role,
@@ -82,7 +82,7 @@ const Team = () => {
     async (id) => {
       try {
         await axios.delete(
-          `http://localhost:5000/api/employees/${id}`
+          `https://goalportal-api.onrender.com/api/employees/${id}`
         );
 
         setEmployees(
