@@ -1,0 +1,35 @@
+const mongoose = require("mongoose");
+
+const employeeSchema =
+  new mongoose.Schema(
+    {
+      name: {
+        type: String,
+        required: true,
+      },
+
+      role: {
+        type: String,
+        required: true,
+      },
+
+      progress: {
+        type: Number,
+        default: 0,
+      },
+
+      status: {
+        type: String,
+        default: "Active",
+      },
+    },
+    {
+      timestamps: true,
+    }
+  );
+
+module.exports =
+  mongoose.model(
+    "Employee",
+    employeeSchema
+  );
